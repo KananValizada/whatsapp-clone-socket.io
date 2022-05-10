@@ -1,20 +1,11 @@
-import useLocalStorage from "../hooks/useLocalStorage";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
-import { useState, useEffect } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const App = () => {
-  const [id, setId] = useState();
+  const [id, setId] = useLocalStorage("id");
 
-  useEffect(() => {
-    let isID = localStorage.getItem("id");
-
-    if (isID) {
-      setId(isID);
-    } else {
-    }
-  }, [id]);
-  return id ? <Dashboard /> : <Login onIdSubmit={setId} />;
+  return id ? <Dashboard id={id} /> : <Login onIdSubmit={setId} />;
 };
 
 export default App;
